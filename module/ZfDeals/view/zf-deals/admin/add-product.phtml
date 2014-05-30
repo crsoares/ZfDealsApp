@@ -1,0 +1,16 @@
+<?php if($this->success): ?>
+		<div class="alert alert-success">O produto foi adicionado!</div>
+<?php elseif($this->insertError): ?>
+		<div class="alert alert-error">O produto não pode ser adicionado.</div>
+<?php else: ?>
+		<?php 
+			$this->form->prepare();
+			echo $this->form()->openTag($this->form);
+			echo $this->formRowTwb($this->form->get('product')->get('id'));
+			echo $this->formRowTwb($this->form->get('product')->get('name'));
+			echo $this->formRowTwb($this->form->get('product')->get('stock'));
+			echo $this->formSubmitTwb($this->form->get('submit'));
+			echo $this->form()->closeTag();	
+		?>
+<?php endif; ?>
+
