@@ -6,9 +6,10 @@ use Zend\ModuleManager\ModuleManager;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
+use Zend\ModuleManager\Feature\ControllerProviderInterface;
 
-class Module implements ConfigProviderInterface, AutoloaderProviderInterface/*,
-ServiceProviderInterface*/
+class Module implements ConfigProviderInterface, AutoloaderProviderInterface,
+ControllerProviderInterface, ServiceProviderInterface
 {
     public function init(ModuleManager $moduleManager)
     {
@@ -47,5 +48,15 @@ ServiceProviderInterface*/
                 )
             )
         );
+    }
+
+    public function getServiceConfig()
+    {
+        return include __DIR__ . '/config/services.config.php';
+    }
+
+    public function getControllerConfig()
+    {
+        return include __DIR__ . '/config/controllers.config.php';
     }
 }

@@ -3,6 +3,25 @@
 return array(
     'router' => array(
         'routes' => array(
+            'zf-deals' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route' => '/deals',
+                    'defaults' => array(
+                        'controller' => 'ZfDeals\Controller\Index',
+                        'action' => 'index',
+                    )
+                )
+            ),
+            'zf-deals\checkout' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route' => '/deals/checkout',
+                    'defaults' => array(
+                        'controller' => 'ZfDeals\Controller\CheckoutForm',
+                    )
+                )
+            ),
             'zf-deals\admin\home' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
@@ -18,37 +37,30 @@ return array(
                 'options' => array(
                     'route' => '/deals/admin/product/add',
                     'defaults' => array(
-                        'controller' => 'ZfDeals\Controller\Admin',
+                        'controller' => 'ZfDeals\Controller\ProductAddForm',
                         'action' => 'add-product',
                     )
                 )
+            ),
+            'zf-deals\admin\deal\add' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route' => '/deals/admin/deal/add',
+                    'defaults' => array(
+                        'controller' => 'ZfDeals\Controller\DealAddForm'
+                    )
+                )
+            ),
+            'zf-deals\admin\orders\show' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route' => '/deals/admin/orders/show',
+                    'defaults' => array(
+                        'controller' => 'ZfDeals\Controller\Order',
+                        'action' => 'show-all'
+                    )
+                )
             )
-        )
-    ),
-    'controllers' => array(
-        'factories' => array(
-            'ZfDeals\Controller\Admin' => 'ZfDeals\Controller\AdminControllerFactory',
-        )
-    ),
-    'service_manager' => array(
-        'factories' => array(
-            'Zend\Db\Adapter\Adapter' => function ($sm) {
-                $config = $sm->get('Config');
-                $dbParams = $config['dbParams'];
-
-                return new Zend\Db\Adapter\Adapter(array(
-                    'driver' => 'pdo',
-                    'dsn' => 'mysql:dbname=' . $dbParams['database'] . ';host=' . $dbParams['hostname'],
-                    'database' => $dbParams['database'],
-                    'username' => $dbParams['username'],
-                    'password' => $dbParams['password']
-                ));
-            },
-            'ZfDeals\Mapper\Product' => function ($sm) {
-                return new \ZfDeals\Mapper\Product(
-                    $sm->get('Zend\Db\Adapter\Adapter')
-                );
-            }
         )
     ),
     'view_manager' => array(

@@ -1,0 +1,4 @@
+<?php if($this->insertError): ?>
+		<div class="alert alert-error">O produto não pode ser adicionado.</div>
+<?php endif; ?>
+<?php echo $this->partial('zf-deals/product-add-form/show.phtml', array('form' => $this->form)); ?>

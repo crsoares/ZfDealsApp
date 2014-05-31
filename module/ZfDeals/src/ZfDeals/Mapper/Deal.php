@@ -33,7 +33,7 @@ class Deal extends TableGateway
 		return parent::insert($this->hydrator->extract($entity));
 	}
 
-	public function findActiveDeals
+	public function findActiveDeals()
 	{
 		$sql = new \Zend\Db\Sql\Sql($this->getAdapter());
 		$select = $sql->select()

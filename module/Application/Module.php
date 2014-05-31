@@ -16,7 +16,11 @@ class Module
 {
     public function onBootstrap(MvcEvent $e)
     {
-        $eventManager        = $e->getApplication()->getEventManager();
+        \Zend\Validator\AbstractValidator::setDefaultTranslator(
+            $e->getApplication()->getServiceManager()->get('translator')
+        );
+
+        $eventManager = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
     }
