@@ -21,6 +21,16 @@ ServiceProviderInterface*/
                 $controller->layout('zf-deals/layout/admin');
             }
         );
+
+        $sharedEvents->attach(
+            'ZfDeals\Controller\IndexController',
+            'dispatch',
+            function ($e) {
+                $controller = $e->getTarget();
+                $controller->layout('zf-deals/layout/site');
+            },
+            100
+        );
     }
 
     public function getConfig()

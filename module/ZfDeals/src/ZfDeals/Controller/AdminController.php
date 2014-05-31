@@ -49,6 +49,50 @@ class AdminController extends AbstractActionController
         }
     }
 
+    public function addDealAction()
+    {
+        $form = $this->dealAddForm;
+
+        $products = $this->productMapper->select();
+        $fieldElements = array();
+
+        foreach($products as $product) {
+            $fieldElements[$product['id']] = $product['name'];
+        }
+
+        $form->get('deal')->get('product')->get('id')->setValueOptions($fieldElements);
+
+        if($this->getRequest()->isPost()) {
+            $form->setData($this->getRequest()->getPost());
+
+            if($form->isValid()) {
+                $model = new ViewModel(array(
+                    'form' => $form
+                ));
+
+                $newDeal = $form->getData();
+                $newDeal->setProduct($newDeal->getProduct()->getId());
+
+                try{
+                    $this->dealMapper->insert($newDeal);
+                    $model->setVariable('success', true);
+                }catch(\Exception $e){
+                    $model->setVariable('insertError', true);
+                }
+
+                return $model;
+            } else {
+                return new ViewModel(array(
+                    'form' => $form
+                ));
+            }
+        } else {
+            return new ViewModel(array(
+                'form' => $form,
+            ));
+        }
+    }
+
     public function setProductAddForm($productAddForm)
     {
         $this->productAddForm = $productAddForm;
