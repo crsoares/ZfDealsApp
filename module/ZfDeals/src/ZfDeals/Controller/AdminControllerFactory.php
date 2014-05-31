@@ -18,6 +18,15 @@ class AdminControllerFactory implements FactoryInterface
         $mapper = $serviceLocator->getServiceLocator()->get('ZfDeals\Mapper\Product');
 
         $ctr->setProductMapper($mapper);
+
+        $dealAddForm = new \ZfDeals\Form\DealAdd();
+        $ctr->setDealAddForm($dealAddForm);
+        $dealAddForm->bind(new \ZfDeals\Entity\Deal());
+
+        $dealMapper = $serviceLocaotr->getSErviceLocator()->get('ZfDeals\Mapper\Deal');
+
+        $ctr->setDealMapper($dealMapper);
+        
         return $ctr;
     }
 }

@@ -9,6 +9,8 @@ class AdminController extends AbstractActionController
 {
     private $productAddForm;
     private $productMapper;
+    private $dealAddForm;
+    private $dealMapper;
 
     public function indexAction()
     {
@@ -65,5 +67,27 @@ class AdminController extends AbstractActionController
     public function getProductMapper()
     {
         return $this->productMapper;
+    }
+
+    public function setDealAddForm($dealAddForm)
+    {
+        $this->dealAddForm = $dealAddForm;
+        return $this;
+    }
+
+    public function getDealAddForm()
+    {
+        return $this->dealAddForm;
+    }
+
+    public function setDealMapper($dealMapper)
+    {
+        $this->dealMaper = $dealMapper;
+        return $this;
+    }
+
+    public function getDealMapper()
+    {
+        return $this->dealMapper;
     }
 }
