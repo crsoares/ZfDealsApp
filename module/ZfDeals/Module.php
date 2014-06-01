@@ -7,9 +7,10 @@ use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
 use Zend\ModuleManager\Feature\ControllerProviderInterface;
+use Zend\ModuleManager\Feature\ViewHelperProviderInterface;
 
 class Module implements ConfigProviderInterface, AutoloaderProviderInterface,
-ControllerProviderInterface, ServiceProviderInterface
+ControllerProviderInterface, ServiceProviderInterface, ViewHelperProviderInterface
 {
     public function init(ModuleManager $moduleManager)
     {
@@ -58,5 +59,10 @@ ControllerProviderInterface, ServiceProviderInterface
     public function getControllerConfig()
     {
         return include __DIR__ . '/config/controllers.config.php';
+    }
+
+    public function getViewHelperConfig()
+    {
+        return include __DIR__ . '/config/viewhelper.config.php';
     }
 }

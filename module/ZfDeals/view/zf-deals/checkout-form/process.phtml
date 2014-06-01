@@ -1,0 +1,6 @@
+<?php if ($this->success): ?>
+		<div class="alert alert-success"><?php echo $this->translate('Encomenda!'); ?></div>
+<?php endif; ?>
+<?php if ($this->insertError): ?>
+		<div class="alert alert-error"><?php echo $this->translate('A ordem não poderia ser colocado.'); ?></div>
+<?php endif; ?>

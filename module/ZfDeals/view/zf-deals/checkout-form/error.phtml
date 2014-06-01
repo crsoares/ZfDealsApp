@@ -1,0 +1,4 @@
+<?php if($this->insertError): ?>
+		<div class="alert alert-error"><?php echo $this->translate('O produto não pode ser adicionado.'); ?></div>
+<?php endif; ?>
+<?php echo $this->partial('zf-deals/checkout-form/show.phtml', array('form' => $this->form)); ?>
