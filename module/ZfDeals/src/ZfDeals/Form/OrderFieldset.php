@@ -29,7 +29,7 @@ class OrderFieldset extends Fieldset implements InputFilterProviderInterface
 			'name' => 'lastname',
 			'type' => 'Zend\Form\Element\Text',
 			'options' => array(
-				'lable' => 'Sobrenome'
+				'label' => 'Sobrenome'
 			)
 		));
 
@@ -37,7 +37,7 @@ class OrderFieldset extends Fieldset implements InputFilterProviderInterface
 			'name' => 'street',
 			'type' => 'Zend\Form\Element\Text',
 			'options' => array(
-				'lable' => 'Rua'
+				'label' => 'Rua'
 			)
 		));
 

@@ -12,7 +12,7 @@ class OrderController extends AbstractActionController
 	public function showAllAction()
 	{
 		$orders = $this->orderMapper->select();
-
+		//print_r($orders->toArray());die;
 		return new ViewModel(array(
 			'orders' => $orders
 		));

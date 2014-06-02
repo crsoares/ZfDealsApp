@@ -13,7 +13,8 @@ class IndexController extends AbstractActionController
 
 	public function indexAction()
 	{
-		$deals = $this->dealMapper->findActiveDeal();
+		$deals = $this->dealMapper->findActiveDeals();
+		//print_r($deals);die;
 		$dealsView = array();
 
 		foreach($deals as $deal) {

@@ -28,7 +28,7 @@ class DealFieldset extends Fieldset
 		));
 
 		$this->add(array(
-			'name' => 'startData',
+			'name' => 'startDate',
 			'type' => 'Zend\Form\Element\Date',
 			'options' => array(
 				'label' => 'Data de Início:'

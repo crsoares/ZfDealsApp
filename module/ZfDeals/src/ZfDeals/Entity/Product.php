@@ -40,4 +40,9 @@ class Product
     {
         return $this->stock;
     }
+
+    public function getArrayCopy()
+    {
+        return get_object_vars($this);
+    }
 }

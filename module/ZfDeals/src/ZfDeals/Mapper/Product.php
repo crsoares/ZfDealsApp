@@ -23,6 +23,15 @@ class Product extends TableGateway
         $this->hydrator = new \Zend\Stdlib\Hydrator\Reflection;
     }
 
+    public function findOneById($id)
+    {
+        //print_r($this->select(array('id' => $id))->current());die;
+        return $this->hydrator->hydrate(
+            $this->select(array('id' => $id))->current()->toArray(),
+            $this->entityPrototype
+        );
+    }
+
     public function insert($entity)
     {
         return parent::insert($this->hydrator->extract($entity));

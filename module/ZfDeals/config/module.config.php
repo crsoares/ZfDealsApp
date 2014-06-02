@@ -14,12 +14,12 @@ return array(
                 )
             ),
             'zf-deals\checkout' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => array(
                     'route' => '/deals/checkout',
                     'defaults' => array(
                         'controller' => 'ZfDeals\Controller\CheckoutForm',
-                    )
+                    ),
                 )
             ),
             'zf-deals\admin\home' => array(
@@ -65,7 +65,8 @@ return array(
     ),
     'view_manager' => array(
         'template_map' => array(
-            'zf-deals/layout/admin' => __DIR__ . '/../view/layout/admin.phtml'
+            'zf-deals/layout/admin' => __DIR__ . '/../view/layout/admin.phtml',
+            'zf-deals/layout/site'  => __DIR__ . '/../view/layout/site.phtml'
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',

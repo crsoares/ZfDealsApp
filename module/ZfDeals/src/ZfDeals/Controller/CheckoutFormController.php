@@ -6,7 +6,7 @@ use Zend\Mvc\Controller\AbsrtractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\Stdlib\Hydrator\Reflection;
 use ZfDeals\Entity\Order as OrderEntity;
-use ZfDeals\Form\Checkout\ as Checkout;
+use ZfDeals\Form\Checkout as Checkout;
 
 class CheckoutFormController extends AbstractFormController
 {
@@ -50,9 +50,10 @@ class CheckoutFormController extends AbstractFormController
 
 	public function show()
 	{
+		/*echo $this->params()->fromQuery('id');die;
 		if(!$this->dealActiveValidator->isValid($this->params()->fromQuery('id'))) {
 			$this->redirect()->toRoute('zf-deals');
-		}
+		}*/
 
 		$this->form->get('order')->get('deal_id')->setValue($this->params()->fromQuery('id'));
 

@@ -36,6 +36,7 @@ class DealAddFormController extends AbstractFormController
 		));
 
 		$newDeal = $this->form->getData();
+		//echo $newDeal->getProduct()->getId();die;
 		$newDeal->setProduct($newDeal->getProduct()->getId());
 
 		try{

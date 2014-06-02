@@ -30,7 +30,30 @@ class Deal extends TableGateway
 
 	public function insert($entity)
 	{
+		//print_r($entity);die;
 		return parent::insert($this->hydrator->extract($entity));
+	}
+
+	public function findActiveDealById($id)
+	{
+		$sql = new \Zend\Db\Sql\Sql($this->getAdapter());
+		$select = $sql->select();
+		$select->from($this->tableName)
+			   ->join('product', 'deal.product=product.id')
+			   ->where('DATE(startDate) <= DATE(NOW())')
+			   ->where('stock > 0')
+			   ->where('deal.dealId = ' . $id);
+
+		$stmt = $sql->prepareStatementForSqlObject($select);
+
+		$results = $stmt->execute();
+		$hydratingResults = $this->hydrate($results);
+
+		if($hydratingResults->count() != 1) {
+			throw new \DomainException('Deal não pode ser encontrada');
+		} else {
+			return $hydratingResults->current();
+		}
 	}
 
 	public function findActiveDeals()
@@ -50,7 +73,15 @@ class Deal extends TableGateway
 
 	}
 
-	public function hydrate($rsults)
+	public function findOneById($id)
+	{
+		return $this->hydrator->hydrate(
+			$this->select(array('dealId' => $id))->current()->toArray(),
+			$this->entityPrototype
+		);
+	}
+
+	public function hydrate($results)
 	{
 		$deals = new \Zend\Db\ResultSet\HydratingResultSet(
 			$this->hydrator,
